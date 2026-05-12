@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elplongor Base</title>
+    <style>
+        @font-face {
+            font-family: mobbin;
+            src: url(./public/fonts/mobbin.woff2);
+        }
+
+        :root {
+            --putih:#fff;
+            --hitam:#000;
+
+            --hitam2:#161A13;
+            --hijau:#86DB6B;
+
+            --ungu:#ECE6ED;
+            --ungu2:#9D80A3;
+            --bgUngu: #FFFDFC;
+
+
+            --tinggiHeader: 1rem;
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: mobbin;
+            color: var(--hitam);
+            width: 100%;
+            height: 100%;
+            background-color: var(--bgUngu);
+
+            font-size: .8rem;
+        }
+    </style>
+
+<!-- header -->
+    <style>
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    
+    height: var(--tinggiHeader);
+    width: 100%;
+    background: linear-gradient(135deg, #4f46e5, #ec4899);
+}
+    </style>
+
+<!-- content -->
+    <style>
+.content {
+    height: max-content;
+    min-height: 100vh;
+    width: 100%;
+
+    .opsi {
+        padding: 1rem;
+        width: 100%;
+
+        display: flex;
+        gap: 1rem;
+        .memilihTH {
+            flex: 3;
+            aspect-ratio: 1;
+            background: var(--ungu2);
+            border-radius: 1.5rem;
+            .gambarTh {
+                height: 100%;
+                width: 100%;
+                background-color: var(--ungu);
+                border-radius: 1.5rem;
+                padding: 1rem;
+                img {
+                    width: 100%;
+                }
+            }
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem 0;
+                img {
+                    width: 2rem;
+                    opacity: .8;
+                }
+            }
+        }
+        .memilihKategori {
+            width: 100%;
+            flex: 3;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            background: var(--ungu2);
+            border-radius: 1.5rem;
+            .tulisan {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background-color: var(--ungu);
+                border-radius: 1.5rem;
+                padding: 1rem;
+                .h1 {
+                    font-size: 2.1rem;              
+                    line-height: 1.1;
+                }
+            }
+            .icon {
+
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem 0;
+                img {
+                    width: 2rem;
+                    opacity: .8;
+                }
+            }
+        }
+    }
+    .pilihanOpsi {
+        width: 100%;
+        aspect-ratio: 2;
+        background-color: var(--hitam);
+
+        display: flex;
+        justify-content: space-between;
+        .tengah {
+            flex:1;
+        }
+        .geser {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            img {
+                width: 2rem;
+                opacity: .8;;
+            }
+        }
+    }
+
+    .tampilkanHasil {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+    }
+}
+    </style>
+</head>
+<style>
+    .selamatDatang {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        margin: 3rem 0;
+        font-size: 1.2rem;
+    }
+</style>
+<body>
+    <header></header>
+    <div class="content">
+
+        <div class="selamatDatang">
+            <div class="img">
+
+            </div>
+            <h1 style="width: 50%; line-height: 1;">Dear Warrior</h1>
+            <p>s</p>
+        </div>
+        <div class="opsi">
+            <div class="memilihTH">
+                <div class="gambarTh">
+                    <img src="./public/image/th/gambar_hd_18.jpg" alt="">
+                </div>
+                <div class="icon">
+                    <img src="./public/image/icon/chevron-down.svg" alt="">
+                </div>
+            </div>
+            <div class="memilihKategori">
+                <div class="tulisan">
+                    <h1 class="h1">Base Trolls 😂</h1>
+                </div>
+                <div class="icon">
+                    <img src="./public/image/icon/chevron-down.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="pilihanOpsi">
+            <div class="kiri geser">
+                <img src="./public/image/icon/chevron-left.svg" alt="">
+            </div>
+            <div class="tengah"></div>
+            <div class="kanan geser">
+                <img src="./public/image/icon/chevron-right.svg" alt="">
+            </div>
+        </div>
+        <div class="tampilkanHasil">
+            <h2>Hasil base Untuk TH 18 :</h2>
+        </div>
+    </div>
+
+
+<style>
+    footer {
+        height: 12rem;
+        width: 100%;
+    }
+</style>
+    <footer>
+
+    </footer>
+</body>
+</html>
