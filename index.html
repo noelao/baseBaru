@@ -13,6 +13,7 @@
         :root {
             --putih:#fff;
             --hitam:#000;
+            --silver:#F0F0F0;
 
             --hitam2:#161A13;
             --hijau:#86DB6B;
@@ -20,6 +21,7 @@
             --ungu:#ECE6ED;
             --ungu2:#9D80A3;
             --bgUngu: #FFFDFC;
+
 
 
             --tinggiHeader: 1rem;
@@ -37,6 +39,10 @@
             background-color: var(--bgUngu);
 
             font-size: .8rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
         }
     </style>
 
@@ -69,12 +75,12 @@ header {
         .memilihTH {
             flex: 3;
             aspect-ratio: 1;
-            background: var(--ungu2);
+            background: var(--hitam);
             border-radius: 1.5rem;
             .gambarTh {
                 height: 100%;
                 width: 100%;
-                background-color: var(--ungu);
+                background-color: var(--silver);
                 border-radius: 1.5rem;
                 padding: 1rem;
                 img {
@@ -100,7 +106,7 @@ header {
             flex-direction: column;
             justify-content: space-between;
             
-            background: var(--ungu2);
+            background: var(--hitam);
             border-radius: 1.5rem;
             .tulisan {
                 width: 100%;
@@ -109,7 +115,7 @@ header {
                 align-items: center;
                 justify-content: center;
 
-                background-color: var(--ungu);
+                background-color: var(--silver);
                 border-radius: 1.5rem;
                 padding: 1rem;
                 .h1 {
@@ -165,12 +171,56 @@ header {
         width: 100%;
         height: 100%;
         padding: 1rem;
-        margin: 3rem 0;
+        margin: 3rem 0 0 0;
         font-size: 1.2rem;
+        .subTitle {
+            width: 100%;
+            background-color: var(--silver);
+            padding: .5rem .8rem;
+            border-radius: 0.55rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            .tips {
+                padding: .2rem .8rem;
+                border-radius: 0.75rem;
+                background-color: var(--hitam);
+                color: var(--putih);
+                font-size: .9rem;
+                font-weight: 500;
+            }
+            p {
+                font-size: .9rem;
+                font-weight: 500;
+            }
+        }
+    }
+    .menu {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        .menuan {
+            h2 {
+                font-size: 1.2rem;
+                font-weight: 700;
+                padding: .5rem 0;
+            }
+            .garisBawah {
+                width: 100%;
+                height: 2px;
+                background-color: var(--hitam);
+                opacity: 0;
+            }
+            .active {
+                opacity: 1;
+            }
+        }
     }
 </style>
 <body>
-    <header></header>
+    <!-- <header></header> -->
+
     <div class="content">
 
         <div class="selamatDatang">
@@ -178,8 +228,24 @@ header {
 
             </div>
             <h1 style="width: 50%; line-height: 1;">Dear Warrior</h1>
-            <p>s</p>
+            <div class="subTitle">
+                <div class="tips">
+                    TIPS
+                </div>
+                <p>Saya akan lawan !!</p>
+            </div>
         </div>
+        <div class="menu">
+            <a href="#" class="base menuan">
+                <h2>Base</h2>
+                <div class="garisBawah active"></div>
+            </a>
+            <a href="#" class="base menuan">
+                <h2>Pasukan</h2>
+                <div class="garisBawah"></div>
+            </a>
+        </div>
+
         <div class="opsi">
             <div class="memilihTH">
                 <div class="gambarTh">
