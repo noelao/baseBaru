@@ -77,12 +77,14 @@ header {
             aspect-ratio: 1;
             background: var(--hitam);
             border-radius: 1.5rem;
+            transition: background-color .3s ease;
             .gambarTh {
                 height: 100%;
                 width: 100%;
                 background-color: var(--silver);
                 border-radius: 1.5rem;
                 padding: 1rem;
+                transition: background-color .3s ease;
                 img {
                     width: 100%;
                 }
@@ -92,12 +94,14 @@ header {
                 align-items: center;
                 justify-content: center;
                 padding: .5rem 0;
-                img {
+                svg {
                     width: 2rem;
                     opacity: .8;
+                    transition: stroke .3s ease;
                 }
             }
         }
+        
         .memilihKategori {
             width: 100%;
             flex: 3;
@@ -106,8 +110,9 @@ header {
             flex-direction: column;
             justify-content: space-between;
             
-            background: var(--hitam);
+            background-color: var(--hitam);
             border-radius: 1.5rem;
+            transition: background-color .3s ease;
             .tulisan {
                 width: 100%;
                 height: 100%;
@@ -118,6 +123,7 @@ header {
                 background-color: var(--silver);
                 border-radius: 1.5rem;
                 padding: 1rem;
+                transition: background-color .3s ease;
                 .h1 {
                     font-size: 2.1rem;              
                     line-height: 1.1;
@@ -130,20 +136,43 @@ header {
                 align-items: center;
                 justify-content: center;
                 padding: .5rem 0;
-                img {
+                svg {
                     width: 2rem;
                     opacity: .8;
+                    transition: stroke .3s ease;
+                }
+            }
+        }
+        .sedangMemilih {
+            background-color: var(--silver);
+            .gambarTh {
+                background-color: var(--hitam);
+            }
+            .tulisan {
+                color: var(--putih);
+                background-color: var(--hitam);
+            }
+            .icon {
+                svg {
+                    stroke:var(--hitam);
                 }
             }
         }
     }
+
+    .actived {
+        height: 12rem !important;
+    }
     .pilihanOpsi {
         width: 100%;
-        aspect-ratio: 2;
+        height: 0;
         background-color: var(--hitam);
 
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
+        transition: height .3s ease;
         .tengah {
             flex:1;
         }
@@ -154,6 +183,50 @@ header {
             img {
                 width: 2rem;
                 opacity: .8;;
+            }
+        }
+    }
+    .pilihanOpsiKategori {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        transform: translateY(100%);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        .background {
+            width: 100%;
+            height: 100%;
+            background-color: var(--hitam);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+        .pilihanKategori2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 2rem 2rem 0 0;
+            height: 60vh;
+            width: 100%;
+            background-color: var(--putih);
+            transform: translateY(100%);
+            transition: transform .3s ease;
+        }
+    }
+    .pilihanOpsiKategoriMuncul {
+        transform: translateY(0);
+        .background {
+            opacity: .7;
+        }
+        .pilihanKategori2 {
+            transform: translateY(0);
+            padding: 1rem;
+            .garis {
+                width: 100%;
+                height: 2px;
+                background-color: var(--silver);
             }
         }
     }
@@ -252,7 +325,9 @@ header {
                     <img src="./public/image/th/gambar_hd_18.jpg" alt="">
                 </div>
                 <div class="icon">
-                    <img src="./public/image/icon/chevron-down.svg" alt="">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--putih)" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
                 </div>
             </div>
             <div class="memilihKategori">
@@ -260,10 +335,13 @@ header {
                     <h1 class="h1">Base Trolls 😂</h1>
                 </div>
                 <div class="icon">
-                    <img src="./public/image/icon/chevron-down.svg" alt="">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--putih)" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
                 </div>
             </div>
         </div>
+
         <div class="pilihanOpsi">
             <div class="kiri geser">
                 <img src="./public/image/icon/chevron-left.svg" alt="">
@@ -276,6 +354,12 @@ header {
         <div class="tampilkanHasil">
             <h2>Hasil base Untuk TH 18 :</h2>
         </div>
+        <div class="pilihanOpsiKategori">
+            <div class="background"></div>
+            <div class="pilihanKategori2">
+                <div class="garis"></div>
+            </div>
+        </div>
     </div>
 
 
@@ -286,7 +370,35 @@ header {
     }
 </style>
     <footer>
-
     </footer>
+
+
+<script>
+    const pilihTh = document.querySelector('.memilihTH');
+    const pilihanOpsi = document.querySelector('.pilihanOpsi');
+
+    const memilihKategori = document.querySelector('.memilihKategori');
+    const pilihanOpsiKategori = document.querySelector('.pilihanOpsiKategori');
+
+    pilihTh.addEventListener("click", function(){
+        console.log("pencet");
+        pilihTh.classList.toggle('sedangMemilih');
+        pilihanOpsi.classList.toggle('actived');
+    });
+
+    memilihKategori.addEventListener("click", function(){
+        console.log("pencet");
+        memilihKategori.classList.toggle('sedangMemilih');
+        pilihanOpsiKategori.classList.toggle('pilihanOpsiKategoriMuncul');
+    });
+    pilihanOpsiKategori.querySelector(".background").addEventListener("click", function(){
+        memilihKategori.classList.toggle('sedangMemilih');
+        pilihanOpsiKategori.classList.toggle('pilihanOpsiKategoriMuncul');
+    });
+        
+
+
+</script>
+
 </body>
 </html>
