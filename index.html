@@ -223,12 +223,12 @@ header {
         .pilihanKategori2 {
             transform: translateY(0);
             padding: 1rem;
-            .garis {
-                width: 100%;
-                height: 2px;
-                background-color: var(--silver);
-            }
         }
+    }
+    .garis {
+        width: 100%;
+        height: 2px;
+        background-color: var(--silver);
     }
 
     .tampilkanHasil {
@@ -268,6 +268,32 @@ header {
             }
         }
     }
+    .elplongor {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        .kiri {
+            display: flex;
+            gap: .5rem;
+            img {
+                border-radius: .75rem;
+                height: 3rem;
+            }
+            .keterangan {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .kanan {
+            padding: .2rem 0;
+            height: 3rem;
+            img {
+                height: 100%;
+            }
+        }
+    }
+
     .menu {
         width: 100%;
         padding: 1rem;
@@ -277,7 +303,8 @@ header {
             h2 {
                 font-size: 1.2rem;
                 font-weight: 700;
-                padding: .5rem 0;
+                padding: .2rem 0;
+                opacity: .3;
             }
             .garisBawah {
                 width: 100%;
@@ -285,7 +312,12 @@ header {
                 background-color: var(--hitam);
                 opacity: 0;
             }
-            .active {
+        }
+        .active {
+            h2 {
+                opacity: 1;
+            }
+            .garisBawah {
                 opacity: 1;
             }
         }
@@ -308,10 +340,25 @@ header {
                 <p>Saya akan lawan !!</p>
             </div>
         </div>
+
+        <div class="elplongor">
+            <div class="kiri">
+                <img src="https://yt3.googleusercontent.com/kVU3nSXPI4GtP3y4PNjIyiTTiXXnayz3hlrWbh5JQdtfYrr3AvliDZvqsZVKEV4tF7ePNwrX=s160-c-k-c0x00ffffff-no-rj" alt="">
+                <div class="keterangan">
+                    <h2>noelao</h2>
+                    <small style="opacity: .8;">@elplongor</small>
+                </div>
+            </div>
+            <div class="kanan">
+                <img src="./public/image/pp/elplongor.png" alt="">
+            </div>
+        </div>
+        
+        <div class="garis"></div>
         <div class="menu">
-            <a href="#" class="base menuan">
+            <a href="#" class="base menuan active">
                 <h2>Base</h2>
-                <div class="garisBawah active"></div>
+                <div class="garisBawah"></div>
             </a>
             <a href="#" class="base menuan">
                 <h2>Pasukan</h2>
@@ -322,7 +369,7 @@ header {
         <div class="opsi">
             <div class="memilihTH">
                 <div class="gambarTh">
-                    <img src="./public/image/th/gambar_hd_18.jpg" alt="">
+                    <img src="./public/image/thHd/th11.webp" alt="">
                 </div>
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--putih)" class="size-6">
@@ -351,6 +398,8 @@ header {
                 <img src="./public/image/icon/chevron-right.svg" alt="">
             </div>
         </div>
+        <br>
+        <div class="garis"></div>
         <div class="tampilkanHasil">
             <h2>Hasil base Untuk TH 18 :</h2>
         </div>
