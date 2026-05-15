@@ -79,12 +79,13 @@ header {
             border-radius: 1.5rem;
             transition: background-color .3s ease;
             .gambarTh {
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
                 height: 100%;
                 width: 100%;
                 background-color: var(--silver);
                 border-radius: 1.5rem;
                 padding: 1rem;
-                transition: background-color .3s ease;
+                transition: background-color .3s ease, box-shadow .3s ease;
                 img {
                     width: 100%;
                 }
@@ -114,6 +115,8 @@ header {
             border-radius: 1.5rem;
             transition: background-color .3s ease;
             .tulisan {
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+
                 width: 100%;
                 height: 100%;
                 display: flex;
@@ -123,7 +126,7 @@ header {
                 background-color: var(--silver);
                 border-radius: 1.5rem;
                 padding: 1rem;
-                transition: background-color .3s ease;
+                transition: background-color .3s ease, box-shadow .3s ease;
                 .h1 {
                     font-size: 2.1rem;              
                     line-height: 1.1;
@@ -147,10 +150,12 @@ header {
             background-color: var(--silver);
             .gambarTh {
                 background-color: var(--hitam);
+                box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
             }
             .tulisan {
                 color: var(--putih);
                 background-color: var(--hitam);
+                box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
             }
             .icon {
                 svg {
@@ -196,6 +201,9 @@ header {
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
+
+        /* 1 angka lebih dari header nav */
+        z-index: 11;
         .background {
             width: 100%;
             height: 100%;
@@ -340,8 +348,123 @@ header {
     100% { opacity: 1; }
 }
 </style>
+
+<style>
+    .navbar {
+        position: sticky;
+        top: .5rem;
+
+        width: 100%;
+        padding: 0 .5rem;
+        
+        z-index: 10;
+        height: auto;
+        .iniNav {
+            width: 100%;
+            border-radius: 1.75rem;
+            overflow: hidden;
+            
+            .iniWarnaNav {
+                width: 100%;
+
+                --tw-backdrop-blur: blur(24px);
+                backdrop-filter: var(--tw-backdrop-blur);
+
+                background-color: hsl(0 0% 93% / 72%);
+
+                .atas {
+                    height: 0;
+                    width: 100%;
+                    transition: height .3s ease;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    position: relative;
+                    .garis {
+                        background-color: #ababab;
+                        opacity: .6;
+                        width: 90%;
+                        position: absolute;
+                        bottom: 0;
+                        height: 2px;
+                    }
+                }
+                .bawah {
+                    height: 3rem;
+                    width: 100%;
+
+                    display: flex;
+                    justify-content: space-between;
+                    padding: .5rem 1.5rem;
+                    .logo {
+                        
+                    }
+                    .navMenu {
+                        padding: .5rem;
+                        height: 100%;
+                        aspect-ratio: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                        span {
+                            width: 100%;
+                            height: 3px;
+                            background-color: #000;
+                            transition: transform .3s ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .kepencet {
+        .iniNav {
+            .iniWarnaNav {
+                .atas {
+                    height: 5.5rem;
+                }
+                .bawah {
+                    .navMenu {
+                        span:nth-child(1) {
+                            transform: rotate(30deg);
+                        }
+                        span:nth-child(2) {
+                            transform: rotate(30deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+</style>
 <body>
     <!-- <header></header> -->
+
+    <div class="navbar">
+        <div class="iniNav">
+            <div class="iniWarnaNav">
+                <div class="atas">
+                    <div class="garis"></div>
+                </div>
+                <div class="bawah">
+                    <div class="logo"></div>
+                    <div class="navMenu">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const navMenu = document.querySelector(".iniWarnaNav .navMenu")
+        navMenu.addEventListener("click", function(){
+            navMenu.parentElement.parentElement.parentElement.parentElement.classList.toggle("kepencet");
+        })
+    </script>
 
     <div class="content">
 
@@ -435,14 +558,38 @@ header {
                 width: 100%;
                 height: 12rem;
                 background-color: var(--silver);
+                .card-content {
+                    width: 100%;
+                }
+
+                .skeleton {
+                    background: linear-gradient(100deg, var(--silver) 8%, #f9f9f9 18%, var(--silver) 33%);
+                    
+                    background-size: 200% 100%;
+                    
+                    animation: 6s shimmer linear infinite;
+                }
+                .card-content {
+                    width: 100%;
+                    height: 100%;
+                }
             }
             .selingan {
                 height: 2rem;
             }
         }
+        @keyframes shimmer {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+        }
     </style>
             <div class="wrapper">
-                <div class="card">
+                <div class="card skeleton">
+                    <div class="card-content skeleton"></div>
 
                 </div>
                 <div class="card">
@@ -464,6 +611,8 @@ header {
                 </div>
             </div>
         </div>
+
+
         <div class="pilihanOpsiKategori">
             <div class="background"></div>
             <div class="pilihanKategori2">
@@ -508,6 +657,7 @@ header {
     color: #007bff; /* Warna kursor (sesuaikan dengan tema kamu) */
     font-weight: bold;
     animation: blink 0.7s infinite;
+    background: #007bff;
 }
 
 /* Responsif untuk HP */
@@ -526,13 +676,13 @@ header {
             </div>
             
             <div class="footer-right">
-                <p>Build with Love<span id="typing-text" class="highlight"></span><span class="cursor">|</span></p>
+                <p>Build with Love <span id="typing-text" class="highlight"></span><span class="cursor">💖</span></p>
             </div>
         </div>
     </footer>
 
 <!-- mengetik -->
- <script src="./mengetik.js"></script>
+<script src="./mengetik.js"></script>
 
 <script>
     const pilihTh = document.querySelector('.memilihTH');
