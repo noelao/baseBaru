@@ -166,7 +166,7 @@ header {
     }
 
     .actived {
-        height: 10rem !important;
+        height: 8rem !important;
     }
     .pilihanOpsi {
         width: 100%;
@@ -190,7 +190,7 @@ header {
             .kumpulan {
                 width: 100%;
                 max-width: 100vw;
-                height: 10rem;
+                height: 8rem;
 
                 overflow-x: scroll;
                 width: max-content;
@@ -198,7 +198,7 @@ header {
                 display: flex;
 
                 gap: 2rem;
-                padding: 2rem;
+                padding: 1rem;
                 img {
                     height: 100%;
                     width: auto;
@@ -253,6 +253,13 @@ header {
             background-color: var(--putih);
             transform: translateY(100%);
             transition: transform .3s ease;
+
+            .choice {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: .3rem;
+            }
         }
     }
     .pilihanOpsiKategoriMuncul {
@@ -274,7 +281,49 @@ header {
     .tampilkanHasil {
         width: 100%;
         height: 100%;
-        padding: 1rem;
+        padding: 2rem 1rem;
+
+        .filter {
+            margin: 3rem 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .tengah {
+                padding: 1rem 2rem;
+
+                background-color: var(--silver);
+                border-radius: 5rem;
+                display: flex;
+                align-items: center;
+                gap: 1.6rem;
+
+                height: 3.5rem;
+                position: relative;
+                
+
+                .terpilihBg {
+                    height: 80%;
+                    width: calc(62px + 1.9rem);
+
+                    border-radius: 3rem;
+                    background-color: #fff;
+                    position: absolute;
+                    left: 1rem;
+                    transition: left .3s ease, width .1s ease;
+                    
+                    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.092);
+                }
+                .pilihan {
+                    position: relative;
+                    opacity: .5;
+                    transition: opacity .3s ease;
+                    cursor: pointer;
+                }
+                .terpilih {
+                    opacity: 1;
+                }
+            }
+        }
     }
 }
     </style>
@@ -381,19 +430,23 @@ header {
 }
 </style>
 
+
+<!-- navbar -->
 <style>
     .navbar {
         position: sticky;
         top: .5rem;
 
         width: 100%;
-        padding: 0 .5rem;
+        padding: 0 1.5rem;
+
         
         z-index: 10;
         height: auto;
+        transition: padding .3s ease;
         .iniNav {
             width: 100%;
-            border-radius: 1.75rem;
+            border-radius: 1.7rem;
             overflow: hidden;
             
             .iniWarnaNav {
@@ -424,14 +477,18 @@ header {
                     }
                 }
                 .bawah {
-                    height: 3rem;
+                    height: 3.4rem;
                     width: 100%;
 
                     display: flex;
                     justify-content: space-between;
-                    padding: .5rem 1.5rem;
+                    padding: .7rem 1.5rem;
                     .logo {
-                        
+                        height: 100%;
+                        svg {
+                            height: 100%;
+                            rotate: 180deg;
+                        }
                     }
                     .navMenu {
                         padding: .5rem;
@@ -453,6 +510,7 @@ header {
     }
     
     .kepencet {
+        padding: 0 .5rem;
         .iniNav {
             .iniWarnaNav {
                 .atas {
@@ -482,7 +540,11 @@ header {
                     <div class="garis"></div>
                 </div>
                 <div class="bawah">
-                    <div class="logo"></div>
+                    <a href="#" class="logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z" fill="currentColor"/>
+                        </svg>
+                    </a>
                     <div class="navMenu">
                         <span></span>
                         <span></span>
@@ -611,6 +673,40 @@ header {
         <div class="garis"></div>
         <div class="tampilkanHasil">
             <h2>Hasil base Untuk TH 18 :</h2>
+            <div class="filter">
+                <div class="tengah">
+                    <div class="terpilihBg"></div>
+                    <div class="pilihan terbaik terpilih">
+                        <h2>terbaik</h2>
+                    </div>
+                    <div class="pilihan terbaru">
+                        <h2>terbaru</h2>
+                    </div>
+                    <div class="pilihan terlama">
+                        <h2>terlama</h2>
+                    </div>
+                </div>
+            </div>
+            <script>
+                const pilihanFilter = document.querySelectorAll(".filter .tengah .pilihan");
+                const terpilihBg= document.querySelector(".filter .tengah .terpilihBg");
+
+                pilihanFilter.forEach((ini, i) => {
+                    ini.addEventListener("click", function(){
+                        pilihanFilter.forEach((ini) => {
+                            ini.classList.remove("terpilih");
+                        });
+
+                        ini.classList.add("terpilih");
+
+                        const lebarParent = terpilihBg.parentElement.clientWidth;
+                        const lebarClient = ini.clientWidth;
+                        console.log(lebarClient);
+                        terpilihBg.style.left = `calc(1rem + (${lebarParent}px - 2.6rem) * ${i/3})`;
+                        terpilihBg.style.width = `calc(${lebarClient}px + 1.9rem)`;
+                    });
+                });
+            </script>
 
     <style>
         .wrapper {
@@ -684,6 +780,12 @@ header {
             <div class="background"></div>
             <div class="pilihanKategori2">
                 <div class="garis"></div>
+                <div class="choice">
+                    <h1>Base Trolls</h1>
+                    <h1>Clan War Leaguage</h1>
+                    <h1>War Base</h1>
+                    <h1>Center big Space</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -744,6 +846,7 @@ header {
             
             <div class="footer-right">
                 <p>Build with Love <span id="typing-text" class="highlight"></span><span class="cursor">💖</span></p>
+                <p>Design inspired by <a target="_blank" href="https://mobbin.com">mobbin</a></p>
             </div>
         </div>
     </footer>

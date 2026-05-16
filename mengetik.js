@@ -1,5 +1,5 @@
 // 1. Siapkan kata-kata yang ingin ditampilkan bergantian
-const kataKata = ["Saya akan lawan !!", "Jangan Lupa Subcribe", "belajar membuat Website", "Coding itu bajingan👺!!"];
+const kataKata = ["Saya akan lawan !!", "Jangan Lupa Subcribe ☝️😋", "belajar membuat Website", "When Yahh??","Coding itu bajingan👺!!"];
 
 let indexKata = 0; // Untuk melacak kata ke-berapa di array
 let indexKarakter = 0; // Untuk melacak huruf ke-berapa
