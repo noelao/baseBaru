@@ -1,0 +1,48 @@
+
+@font-face {
+    font-family: mobbin;
+    src: url(../fonts/mobbin.woff2);
+    font-display: swap;
+}
+
+:root {
+    --putih:#fff;
+    --hitam:#000;
+    --silver:#F0F0F0;
+
+    --hitam2:#161A13;
+    --hijau:#86DB6B;
+
+    --ungu:#ECE6ED;
+    --ungu2:#9D80A3;
+    --bgUngu: #FFFDFC;
+
+
+
+    --tinggiHeader: 1rem;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: mobbin;
+    color: var(--hitam);
+    width: 100%;
+    height: 100%;
+    background-color: var(--putih);
+
+    font-size: .8rem;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.content {
+    height: max-content;
+    min-height: 100vh;
+    width: 100%;
+}

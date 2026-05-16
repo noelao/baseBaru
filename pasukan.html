@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elplongor Base</title>
+    <link rel="preload" href="./public/fonts/mobbin.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="./public/css/main.css">
+    <link rel="stylesheet" href="./public/css/navBar.css">
+    <!-- main css -->
+
+<!-- content -->
+    <style>
+.content {
+    .opsi {
+        padding: 1rem;
+        width: 100%;
+
+        display: flex;
+        gap: 1rem;
+        .memilihTH {
+            flex: 3;
+            aspect-ratio: 1;
+            background: var(--hitam);
+            border-radius: 1.5rem;
+            transition: background-color .3s ease;
+            .gambarTh {
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+                height: 100%;
+                width: 100%;
+                background-color: var(--silver);
+                border-radius: 1.5rem;
+                padding: 1rem;
+                transition: background-color .3s ease, box-shadow .3s ease;
+                img {
+                    width: 100%;
+                }
+            }
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem 0;
+                svg {
+                    width: 2rem;
+                    opacity: .8;
+                    transition: stroke .3s ease;
+                }
+            }
+        }
+        
+        .memilihKategori {
+            width: 100%;
+            flex: 3;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            background-color: var(--hitam);
+            border-radius: 1.5rem;
+            transition: background-color .3s ease;
+            .tulisan {
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background-color: var(--silver);
+                border-radius: 1.5rem;
+                padding: 1rem;
+                transition: background-color .3s ease, box-shadow .3s ease;
+                .h1 {
+                    font-size: 2.1rem;              
+                    line-height: 1.1;
+                }
+            }
+            .icon {
+
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem 0;
+                svg {
+                    width: 2rem;
+                    opacity: .8;
+                    transition: stroke .3s ease;
+                }
+            }
+        }
+        .sedangMemilih {
+            background-color: var(--silver);
+            .gambarTh {
+                background-color: var(--hitam);
+                box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+            }
+            .tulisan {
+                color: var(--putih);
+                background-color: var(--hitam);
+                box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+            }
+            .icon {
+                svg {
+                    stroke:var(--hitam);
+                }
+            }
+        }
+    }
+
+    .actived {
+        height: 8rem !important;
+    }
+    .pilihanOpsi {
+        width: 100%;
+        height: 0;
+        background-color: var(--hitam);
+        position: relative;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        transition: height .3s ease;
+        .tengah {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            
+            grid-template-rows: 1fr;
+            .kumpulan {
+                width: 100%;
+                max-width: 100vw;
+                height: 8rem;
+
+                overflow-x: scroll;
+                width: max-content;
+
+                display: flex;
+
+                gap: 2rem;
+                padding: 1rem;
+                img {
+                    height: 100%;
+                    width: auto;
+                }
+            }
+            .kumpulan::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        .geser {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            opacity: .8;
+
+            position: absolute;
+            img {
+                width: 2rem;
+            }
+        }
+        .kanan {
+            right: 0;
+        }
+    }
+    .pilihanOpsiKategori {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        transform: translateY(100%);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        /* 1 angka lebih dari header nav */
+        z-index: 11;
+        .background {
+            width: 100%;
+            height: 100%;
+            background-color: var(--hitam);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+        .pilihanKategori2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 2rem 2rem 0 0;
+            height: 60vh;
+            width: 100%;
+            background-color: var(--putih);
+            transform: translateY(100%);
+            transition: transform .3s ease;
+
+            .choice {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: .3rem;
+            }
+        }
+    }
+    .pilihanOpsiKategoriMuncul {
+        transform: translateY(0);
+        .background {
+            opacity: .7;
+        }
+        .pilihanKategori2 {
+            transform: translateY(0);
+            padding: 1rem;
+        }
+    }
+    .garis {
+        width: 100%;
+        height: 2px;
+        background-color: var(--silver);
+    }
+
+    .tampilkanHasil {
+        width: 100%;
+        height: 100%;
+        padding: 2rem 1rem;
+
+        .filter {
+            margin: 3rem 0 0 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .tengah {
+                padding: 1rem 1rem;
+
+                background-color: var(--silver);
+                border-radius: 5rem;
+                display: flex;
+                align-items: center;
+                gap: 1.6rem;
+
+                height: 2.8rem;
+                position: relative;
+                
+
+                .terpilihBg {
+                    height: calc(100% - .5rem);
+                    width: calc(56px + 1.4rem);
+
+                    border-radius: 3rem;
+                    background-color: #fff;
+                    position: absolute;
+                    left: .2rem;
+                    transition: left .3s ease, width .1s ease;
+                    
+                    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.092);
+                }
+                .pilihan {
+                    position: relative;
+                    opacity: .5;
+                    transition: opacity .3s ease;
+                    cursor: pointer;
+                    h2 {
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                    }
+                }
+                .terpilih {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+    </style>
+</head>
+<style>
+    .selamatDatang {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        margin: 3rem 0 0 0;
+        font-size: 1.2rem;
+        .subTitle {
+            width: 100%;
+            background-color: var(--silver);
+            padding: .5rem .8rem;
+            border-radius: 0.55rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            .tips {
+                padding: .2rem .8rem;
+                border-radius: 0.75rem;
+                background-color: var(--hitam);
+                color: var(--putih);
+                font-size: .9rem;
+                font-weight: 500;
+            }
+            p {
+                font-size: .9rem;
+                font-weight: 500;
+            }
+        }
+    }
+    .elplongor {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        .kiri {
+            display: flex;
+            gap: .5rem;
+            img {
+                border-radius: .75rem;
+                height: 3rem;
+            }
+            .keterangan {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .kanan {
+            padding: .2rem 0;
+            height: 3rem;
+            img {
+                height: 100%;
+            }
+        }
+    }
+
+    .menu {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        .menuan {
+            h2 {
+                font-size: 1.2rem;
+                font-weight: 700;
+                padding: .2rem 0;
+                opacity: .3;
+            }
+            .garisBawah {
+                width: 100%;
+                height: 2px;
+                background-color: var(--hitam);
+                opacity: 0;
+            }
+        }
+        .active {
+            h2 {
+                opacity: 1;
+            }
+            .garisBawah {
+                opacity: 1;
+            }
+        }
+    }
+</style>
+
+<!-- tampilan mengetik -->
+<style>
+
+/* Membuat animasi kursor berkedip */
+.kursor {
+    display: inline-block;
+    color: #333;
+    animation: kedip 0.7s infinite;
+}
+
+@keyframes kedip {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+</style>
+
+
+
+<body>
+    <!-- <header></header> -->
+
+    <div class="navbar">
+        <div class="iniNav">
+            <div class="iniWarnaNav">
+                <div class="atas">
+                    <div class="garis"></div>
+                </div>
+                <div class="bawah">
+                    <a href="#" class="logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="24" height="24">
+                            <path d="M 0 0 H 192 L 0 192 H 192 Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <div class="navMenu">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const navMenu = document.querySelector(".iniWarnaNav .navMenu")
+        navMenu.addEventListener("click", function(){
+            navMenu.parentElement.parentElement.parentElement.parentElement.classList.toggle("kepencet");
+        })
+    </script>
+
+
+    <div class="content">
+
+        <div class="selamatDatang">
+            <div class="img">
+
+            </div>
+            <h1 style="width: 50%; line-height: 1;">Dear Warrior</h1>
+            <div class="subTitle">
+                <div class="tips">
+                    TIPS
+                </div>
+                <p class="typewriter">
+                    <span id="efek-ngetik" class="teks-ngetik"></span><span class="kursor">|</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="elplongor">
+            <div class="kiri">
+                <img src="https://yt3.googleusercontent.com/kVU3nSXPI4GtP3y4PNjIyiTTiXXnayz3hlrWbh5JQdtfYrr3AvliDZvqsZVKEV4tF7ePNwrX=s160-c-k-c0x00ffffff-no-rj" alt="">
+                <div class="keterangan">
+                    <h2>noelao</h2>
+                    <small style="opacity: .8;">@elplongor</small>
+                </div>
+            </div>
+            <div class="kanan">
+                <img src="./public/image/pp/elplongor.png" alt="">
+            </div>
+        </div>
+        
+        <div class="garis"></div>
+
+        
+        <div class="menu">
+            <a href="base.html" class="base menuan">
+                <h2>Base</h2>
+                <div class="garisBawah"></div>
+            </a>
+            <a href="pasukan.html" class="base menuan active">
+                <h2>Pasukan</h2>
+                <div class="garisBawah"></div>
+            </a>
+        </div>
+
+    </div>
+
+
+<style>
+/* Footer Container */
+.main-footer {
+    min-height: 50vh;
+
+    width: 100%;
+    padding: 20px 0;
+    border-top: 1px solid #eeeeee; /* Garis tipis transparan */
+    background-color: transparent; /* Mengikuti background body */
+    font-family: inherit; /* Menggunakan font utama kamu */
+    margin-top: 1rem;
+
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: #666; /* Warna teks abu-abu minimalis */
+    font-size: 0.9rem;
+}
+
+/* Styling Efek Mengetik */
+.highlight {
+    color: #333; /* Warna lebih gelap untuk teks yang diketik */
+    font-weight: 600;
+}
+
+.cursor {
+    color: #007bff; /* Warna kursor (sesuaikan dengan tema kamu) */
+    font-weight: bold;
+    animation: blink 0.7s infinite;
+    background: #007bff;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+</style>
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2026 noelao. All rights reserved.</p>
+            </div>
+            
+            <div class="footer-right">
+                <p>Build with Love <span id="typing-text" class="highlight"></span><span class="cursor">💖</span></p>
+                <p>Design inspired by <a target="_blank" href="https://mobbin.com">mobbin</a></p>
+            </div>
+        </div>
+    </footer>
+
+<!-- mengetik -->
+<script src="./mengetik.js"></script>
+
+<script>
+    const pilihTh = document.querySelector('.memilihTH');
+    const pilihanOpsi = document.querySelector('.pilihanOpsi');
+
+    const memilihKategori = document.querySelector('.memilihKategori');
+    const pilihanOpsiKategori = document.querySelector('.pilihanOpsiKategori');
+
+    pilihTh.addEventListener("click", function(){
+        console.log("pencet");
+        pilihTh.classList.toggle('sedangMemilih');
+        pilihanOpsi.classList.toggle('actived');
+    });
+
+    memilihKategori.addEventListener("click", function(){
+        console.log("pencet");
+        memilihKategori.classList.toggle('sedangMemilih');
+        pilihanOpsiKategori.classList.toggle('pilihanOpsiKategoriMuncul');
+    });
+    pilihanOpsiKategori.querySelector(".background").addEventListener("click", function(){
+        memilihKategori.classList.toggle('sedangMemilih');
+        pilihanOpsiKategori.classList.toggle('pilihanOpsiKategoriMuncul');
+    });
+        
+
+
+</script>
+
+</body>
+</html>

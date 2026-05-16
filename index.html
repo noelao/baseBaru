@@ -1,966 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>elplongor Base</title>
-    <style>
-        @font-face {
-            font-family: mobbin;
-            src: url(./public/fonts/mobbin.woff2);
-        }
+    <link
+      rel="preload"
+      href="./public/fonts/mobbin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
-        :root {
-            --putih:#fff;
-            --hitam:#000;
-            --silver:#F0F0F0;
+    <link rel="stylesheet" href="./public/css/main.css" />
+    <link rel="stylesheet" href="./public/css/navBar.css" />
+    <!-- main css -->
+  </head>
 
-            --hitam2:#161A13;
-            --hijau:#86DB6B;
-
-            --ungu:#ECE6ED;
-            --ungu2:#9D80A3;
-            --bgUngu: #FFFDFC;
-
-
-
-            --tinggiHeader: 1rem;
-        }
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: mobbin;
-            color: var(--hitam);
-            width: 100%;
-            height: 100%;
-            background-color: var(--bgUngu);
-
-            font-size: .8rem;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-    </style>
-
-<!-- header -->
-    <style>
-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    
-    height: var(--tinggiHeader);
-    width: 100%;
-    background: linear-gradient(135deg, #4f46e5, #ec4899);
-}
-    </style>
-
-<!-- content -->
-    <style>
-.content {
-    height: max-content;
-    min-height: 100vh;
-    width: 100%;
-
-    .opsi {
-        padding: 1rem;
-        width: 100%;
-
-        display: flex;
-        gap: 1rem;
-        .memilihTH {
-            flex: 3;
-            aspect-ratio: 1;
-            background: var(--hitam);
-            border-radius: 1.5rem;
-            transition: background-color .3s ease;
-            .gambarTh {
-                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
-                height: 100%;
-                width: 100%;
-                background-color: var(--silver);
-                border-radius: 1.5rem;
-                padding: 1rem;
-                transition: background-color .3s ease, box-shadow .3s ease;
-                img {
-                    width: 100%;
-                }
-            }
-            .icon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: .5rem 0;
-                svg {
-                    width: 2rem;
-                    opacity: .8;
-                    transition: stroke .3s ease;
-                }
-            }
-        }
-        
-        .memilihKategori {
-            width: 100%;
-            flex: 3;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            
-            background-color: var(--hitam);
-            border-radius: 1.5rem;
-            transition: background-color .3s ease;
-            .tulisan {
-                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
-
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                background-color: var(--silver);
-                border-radius: 1.5rem;
-                padding: 1rem;
-                transition: background-color .3s ease, box-shadow .3s ease;
-                .h1 {
-                    font-size: 2.1rem;              
-                    line-height: 1.1;
-                }
-            }
-            .icon {
-
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: .5rem 0;
-                svg {
-                    width: 2rem;
-                    opacity: .8;
-                    transition: stroke .3s ease;
-                }
-            }
-        }
-        .sedangMemilih {
-            background-color: var(--silver);
-            .gambarTh {
-                background-color: var(--hitam);
-                box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
-            }
-            .tulisan {
-                color: var(--putih);
-                background-color: var(--hitam);
-                box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
-            }
-            .icon {
-                svg {
-                    stroke:var(--hitam);
-                }
-            }
-        }
-    }
-
-    .actived {
-        height: 8rem !important;
-    }
-    .pilihanOpsi {
-        width: 100%;
-        height: 0;
-        background-color: var(--hitam);
-        position: relative;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        transition: height .3s ease;
-        .tengah {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            
-            grid-template-rows: 1fr;
-            .kumpulan {
-                width: 100%;
-                max-width: 100vw;
-                height: 8rem;
-
-                overflow-x: scroll;
-                width: max-content;
-
-                display: flex;
-
-                gap: 2rem;
-                padding: 1rem;
-                img {
-                    height: 100%;
-                    width: auto;
-                }
-            }
-            .kumpulan::-webkit-scrollbar {
-                display: none;
-            }
-        }
-        .geser {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            opacity: .8;
-
-            position: absolute;
-            img {
-                width: 2rem;
-            }
-        }
-        .kanan {
-            right: 0;
-        }
-    }
-    .pilihanOpsiKategori {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        transform: translateY(100%);
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-
-        /* 1 angka lebih dari header nav */
-        z-index: 11;
-        .background {
-            width: 100%;
-            height: 100%;
-            background-color: var(--hitam);
-            opacity: 0;
-            transition: opacity .3s ease;
-        }
-        .pilihanKategori2 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            border-radius: 2rem 2rem 0 0;
-            height: 60vh;
-            width: 100%;
-            background-color: var(--putih);
-            transform: translateY(100%);
-            transition: transform .3s ease;
-
-            .choice {
-                margin-top: 1rem;
-                display: flex;
-                flex-direction: column;
-                gap: .3rem;
-            }
-        }
-    }
-    .pilihanOpsiKategoriMuncul {
-        transform: translateY(0);
-        .background {
-            opacity: .7;
-        }
-        .pilihanKategori2 {
-            transform: translateY(0);
-            padding: 1rem;
-        }
-    }
-    .garis {
-        width: 100%;
-        height: 2px;
-        background-color: var(--silver);
-    }
-
-    .tampilkanHasil {
-        width: 100%;
-        height: 100%;
-        padding: 2rem 1rem;
-
-        .filter {
-            margin: 3rem 0 0 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            .tengah {
-                padding: 1rem 1rem;
-
-                background-color: var(--silver);
-                border-radius: 5rem;
-                display: flex;
-                align-items: center;
-                gap: 1.6rem;
-
-                height: 2.8rem;
-                position: relative;
-                
-
-                .terpilihBg {
-                    height: calc(100% - .5rem);
-                    width: calc(56px + 1.4rem);
-
-                    border-radius: 3rem;
-                    background-color: #fff;
-                    position: absolute;
-                    left: .2rem;
-                    transition: left .3s ease, width .1s ease;
-                    
-                    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.092);
-                }
-                .pilihan {
-                    position: relative;
-                    opacity: .5;
-                    transition: opacity .3s ease;
-                    cursor: pointer;
-                    h2 {
-                        font-weight: 600;
-                        font-size: 1.1rem;
-                    }
-                }
-                .terpilih {
-                    opacity: 1;
-                }
-            }
-        }
-    }
-}
-    </style>
-</head>
-<style>
-    .selamatDatang {
-        width: 100%;
-        height: 100%;
-        padding: 1rem;
-        margin: 3rem 0 0 0;
-        font-size: 1.2rem;
-        .subTitle {
-            width: 100%;
-            background-color: var(--silver);
-            padding: .5rem .8rem;
-            border-radius: 0.55rem;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            .tips {
-                padding: .2rem .8rem;
-                border-radius: 0.75rem;
-                background-color: var(--hitam);
-                color: var(--putih);
-                font-size: .9rem;
-                font-weight: 500;
-            }
-            p {
-                font-size: .9rem;
-                font-weight: 500;
-            }
-        }
-    }
-    .elplongor {
-        width: 100%;
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        .kiri {
-            display: flex;
-            gap: .5rem;
-            img {
-                border-radius: .75rem;
-                height: 3rem;
-            }
-            .keterangan {
-                display: flex;
-                flex-direction: column;
-            }
-        }
-        .kanan {
-            padding: .2rem 0;
-            height: 3rem;
-            img {
-                height: 100%;
-            }
-        }
-    }
-
-    .menu {
-        width: 100%;
-        padding: 1rem;
-        display: flex;
-        gap: 1rem;
-        .menuan {
-            h2 {
-                font-size: 1.2rem;
-                font-weight: 700;
-                padding: .2rem 0;
-                opacity: .3;
-            }
-            .garisBawah {
-                width: 100%;
-                height: 2px;
-                background-color: var(--hitam);
-                opacity: 0;
-            }
-        }
-        .active {
-            h2 {
-                opacity: 1;
-            }
-            .garisBawah {
-                opacity: 1;
-            }
-        }
-    }
-</style>
-
-<!-- tampilan mengetik -->
-<style>
-
-/* Membuat animasi kursor berkedip */
-.kursor {
-    display: inline-block;
-    color: #333;
-    animation: kedip 0.7s infinite;
-}
-
-@keyframes kedip {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
-</style>
-
-
-<!-- navbar -->
-<style>
-    .navbar {
-        position: sticky;
-        top: .5rem;
-
-        width: 100%;
-        padding: 0 1.5rem;
-
-        
-        z-index: 10;
-        height: auto;
-        transition: padding .3s ease;
-        .iniNav {
-            width: 100%;
-            border-radius: 1.7rem;
-            overflow: hidden;
-            
-            .iniWarnaNav {
-                width: 100%;
-
-                --tw-backdrop-blur: blur(24px);
-                backdrop-filter: var(--tw-backdrop-blur);
-
-                background-color: hsl(0 0% 93% / 72%);
-
-                .atas {
-                    height: 0;
-                    width: 100%;
-                    transition: height .3s ease;
-                    overflow: hidden;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    position: relative;
-                    .garis {
-                        background-color: #ababab;
-                        opacity: .6;
-                        width: 90%;
-                        position: absolute;
-                        bottom: 0;
-                        height: 2px;
-                    }
-                }
-                .bawah {
-                    height: 3.4rem;
-                    width: 100%;
-
-                    display: flex;
-                    justify-content: space-between;
-                    padding: .7rem 1.5rem;
-                    .logo {
-                        height: 100%;
-                        svg {
-                            height: 100%;
-                            rotate: 180deg;
-                        }
-                    }
-                    .navMenu {
-                        padding: .5rem;
-                        height: 100%;
-                        aspect-ratio: 1;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-evenly;
-                        span {
-                            width: 100%;
-                            height: 3px;
-                            background-color: #000;
-                            transition: transform .3s ease;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    .kepencet {
-        padding: 0 .5rem;
-        .iniNav {
-            .iniWarnaNav {
-                .atas {
-                    height: 5.5rem;
-                }
-                .bawah {
-                    .navMenu {
-                        span:nth-child(1) {
-                            transform: rotate(30deg);
-                        }
-                        span:nth-child(2) {
-                            transform: rotate(30deg);
-                        }
-                    }
-                }
-            }
-        }
-    }
-</style>
-<body>
+  <body>
     <!-- <header></header> -->
 
     <div class="navbar">
-        <div class="iniNav">
-            <div class="iniWarnaNav">
-                <div class="atas">
-                    <div class="garis"></div>
-                </div>
-                <div class="bawah">
-                    <a href="#" class="logo">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                            <path d="M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <div class="navMenu">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+      <div class="iniNav">
+        <div class="iniWarnaNav">
+          <div class="atas">
+            <div class="garis"></div>
+          </div>
+          <div class="bawah">
+            <a href="#" class="logo">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 192 192"
+                width="24"
+                height="24"
+              >
+                <path d="M 0 0 H 192 L 0 192 H 192 Z" fill="currentColor" />
+              </svg>
+            </a>
+            <div class="navMenu">
+              <span></span>
+              <span></span>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <script>
-        const navMenu = document.querySelector(".iniWarnaNav .navMenu")
-        navMenu.addEventListener("click", function(){
-            navMenu.parentElement.parentElement.parentElement.parentElement.classList.toggle("kepencet");
-        })
+      const navMenu = document.querySelector(".iniWarnaNav .navMenu");
+      navMenu.addEventListener("click", function () {
+        navMenu.parentElement.parentElement.parentElement.parentElement.classList.toggle(
+          "kepencet",
+        );
+      });
     </script>
 
-    <div class="content">
-
-        <div class="selamatDatang">
-            <div class="img">
-
-            </div>
-            <h1 style="width: 50%; line-height: 1;">Dear Warrior</h1>
-            <div class="subTitle">
-                <div class="tips">
-                    TIPS
-                </div>
-                <p class="typewriter">
-                    <span id="efek-ngetik" class="teks-ngetik"></span><span class="kursor">|</span>
-                </p>
-            </div>
-        </div>
-
-        <div class="elplongor">
-            <div class="kiri">
-                <img src="https://yt3.googleusercontent.com/kVU3nSXPI4GtP3y4PNjIyiTTiXXnayz3hlrWbh5JQdtfYrr3AvliDZvqsZVKEV4tF7ePNwrX=s160-c-k-c0x00ffffff-no-rj" alt="">
-                <div class="keterangan">
-                    <h2>noelao</h2>
-                    <small style="opacity: .8;">@elplongor</small>
-                </div>
-            </div>
-            <div class="kanan">
-                <img src="./public/image/pp/elplongor.png" alt="">
-            </div>
-        </div>
-        
-        <div class="garis"></div>
-        <div class="menu">
-            <a href="#" class="base menuan active">
-                <h2>Base</h2>
-                <div class="garisBawah"></div>
-            </a>
-            <a href="#" class="base menuan">
-                <h2>Pasukan</h2>
-                <div class="garisBawah"></div>
-            </a>
-        </div>
-
-        <div class="opsi">
-            <div class="memilihTH">
-                <div class="gambarTh">
-                    <img src="./public/image/thHd/th11.webp" alt="">
-                </div>
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--putih)" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </div>
-            </div>
-            <div class="memilihKategori">
-                <div class="tulisan">
-                    <h1 class="h1">Base Trolls 😂</h1>
-                </div>
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--putih)" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <div class="pilihanOpsi">
-            <div class="kiri geser">
-                <img src="./public/image/icon/chevron-left.svg" alt="">
-            </div>
-            <div class="tengah">
-                <div class="kumpulan" id="autoScrollBox">
-                    <img src="./public/image/th/gambar_hd_1.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_2.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_3.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_4.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_5.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_6.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_7.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_8.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_9.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_10.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_11.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_12.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_13.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_14.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_15.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_16.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_17.jpg" alt="">
-                    <img src="./public/image/th/gambar_hd_18.jpg" alt="">
-                </div>
-
-                <script>
-                    window.addEventListener('load', function() {
-                        const scrollBox = document.getElementById('autoScrollBox');
-                        const maxScrollWidth = scrollBox.scrollWidth - scrollBox.clientWidth;
-                        
-                        // Sekarang coba kita scroll, ukuran aslinya pasti sudah terbaca
-                        scrollBox.scrollTo({ left: maxScrollWidth*10/18, behavior: 'instant' });
-                        
-                        // (Opsional) Cek lagi batas maksimalnya di sini, seharusnya sudah ribuan pixel
-                        console.log("Batas maksimal setelah load: " + (scrollBox.scrollWidth - scrollBox.clientWidth));
-                    });
-                </script>
-
-            </div>
-            <div class="kanan geser">
-                <img src="./public/image/icon/chevron-right.svg" alt="">
-            </div>
-        </div>
-        <br>
-        <div class="garis"></div>
-        <div class="tampilkanHasil">
-            <h2>Hasil base Untuk TH 18 :</h2>
-            <div class="filter">
-                <div class="tengah">
-                    <div class="terpilihBg"></div>
-                    <div class="pilihan terbaik terpilih">
-                        <h2>terbaik</h2>
-                    </div>
-                    <div class="pilihan terbaru">
-                        <h2>terbaru</h2>
-                    </div>
-                    <div class="pilihan terlama">
-                        <h2>terlama</h2>
-                    </div>
-                </div>
-            </div>
-            <script>
-                const pilihanFilter = document.querySelectorAll(".filter .tengah .pilihan");
-                const terpilihBg= document.querySelector(".filter .tengah .terpilihBg");
-
-                pilihanFilter.forEach((ini, i) => {
-                    ini.addEventListener("click", function(){
-                        pilihanFilter.forEach((ini) => {
-                            ini.classList.remove("terpilih");
-                        });
-
-                        ini.classList.add("terpilih");
-
-                        const lebarParent = terpilihBg.parentElement.clientWidth;
-                        const lebarClient = ini.clientWidth;
-                        console.log(lebarClient);
-
-                        const iInt = parseInt(i);
-                        
-                        terpilihBg.style.left = `calc(.2rem + (${lebarParent}px - .4rem) * ${i/3})`;
-                        terpilihBg.style.width = `calc(${lebarClient}px + 1.4rem)`;
-
-                    });
-                });
-            </script>
-
     <style>
-        .wrapper {
-            margin-top: 1rem;
-            width: 100%;
+      .content {
+        .sapaan {
+          padding: 1rem 3rem;
+          margin: 5rem 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          line-height: 1;
+          gap: 2rem;
+          h1 {
+            text-align: center;
+            font-size: 2.3rem;
+          }
+          .subTitle {
+            font-size: 1rem;
+            text-align: center;
+            opacity: 0.5;
+            font-weight: 600;
+          }
+          .creator {
+            width: 60%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            .tiga {
-                padding: 2rem 1rem;
-                width: calc(100% + 2rem);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 1rem;
-                background-color: var(--silver);
-
+            gap: 0.5rem;
+            img {
+              border-radius: 0.75rem;
+              width: 100%;
             }
-            .card {
+            .bawah {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+            }
+            .kanan {
+              background-color: #ec1d1d;
+              width: 5rem;
+              border-radius: 0.75rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              gap: 0.5rem;
+              color: white;
+              span {
+                font-weight: 600;
+                font-size: 0.9rem;
+              }
+              svg {
+                height: 1rem;
+                rotate: -90deg;
+              }
+            }
+          }
+        }
+        .favorite {
+          margin: 6rem 0;
+          width: 100%;
+          padding: 1rem;
+          .produk {
+            width: 100%;
+            padding: 1rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: .5rem;
+            a {
                 width: 100%;
-                height: 12rem;
-                background-color: var(--silver);
-                .card-content {
+                height: 5rem;
+                background-color: var(--bgUngu);
+                position: relative;
+                .title {
                     width: 100%;
-                }
+                    
 
-                .skeleton {
-                    background: linear-gradient(100deg, var(--silver) 8%, #f9f9f9 18%, var(--silver) 33%);
-                    
-                    background-size: 200% 100%;
-                    
-                    animation: 6s shimmer linear infinite;
+                    --tw-backdrop-blur: blur(24px);
+                    backdrop-filter: var(--tw-backdrop-blur);
+
+                    background-color: hsl(0 0% 93% / 72%);
+                    text-align: center;
+                    padding: .2rem;
+                    position: relative;
+                    z-index: 1;
+                    small {
+                        font-size: .7rem;
+                        font-weight: 600;
+                    }
                 }
-                .card-content {
+                .fotoLink {
+                    position: absolute;
+                    top: 0;
                     width: 100%;
                     height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     overflow: hidden;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
                     img {
-                        width: 100%;
-                        object-fit: cover;;
+                        height: 100%;
+                        scale: 3;
                     }
                 }
             }
-            .selingan {
-                height: 2rem;
-            }
-            .quote {
-                height: max-content;
-                padding: 1rem;
-                text-align: center;
-            }
-            .nextData {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .panah {
-                    height: 4rem;
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    background-color: var(--silver);
-                    border-radius: .75rem;
-                    cursor: pointer;
-
-                    svg {
-                        height: 2rem;
-                    }
-                }
-            }
+          }
         }
-        @keyframes shimmer {
-        0% {
-            background-position: 200% 0;
-        }
-        100% {
-            background-position: -200% 0;
-        }
-        }
+      }
     </style>
-            <div class="wrapper">
-                <div class="tiga">
-                    <div class="card skeleton">
-                        <div class="card-content skeleton">
-                            <img src="./public/image/base/th17/base.webp" alt="">
-                        </div>
-                    </div>
-                    <a href="#" class="card">
-                        <div class="card-content">
-                            <img src="./public/image/base/th17/base.webp" alt="">
-                        </div>
-                    </a>
-                    <div class="card">
-                        <div class="card-content">
-                            <img src="./public/image/base/th17/base.webp" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="selingan quote">
-                    <h2>" Musuhnya musuh adalah teman "</h2>
-                    <small>SUN TZU</small>
-                </div>
-                <div class="selingan card"></div>
-
-                
-                <div class="tiga">
-                    <div class="card skeleton">
-                        <div class="card-content skeleton">
-                            <img src="./public/image/base/th17/base.webp" alt="">
-                        </div>
-                    </div>
-                    <a href="#" class="card">
-                        <div class="card-content">
-                            <img src="./public/image/base/th17/base.webp" alt="">
-                        </div>
-                    </a>
-                    <div class="card">
-                        <div class="card-content">
-                            <img src="./public/image/base/th17/base.webp" alt="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="nextData">
-                    <div class="panah">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--hitam)" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
-                        </svg>
-                    </div>
-                </div>
+    <div class="content">
+      <div class="sapaan">
+        <h1>Creator Web Space</h1>
+        <span class="subTitle"
+          >support creator agar tetap bisa berkarya dan menghiboer.</span
+        >
+        <div class="creator">
+          <img
+            src="https://yt3.googleusercontent.com/kVU3nSXPI4GtP3y4PNjIyiTTiXXnayz3hlrWbh5JQdtfYrr3AvliDZvqsZVKEV4tF7ePNwrX=s160-c-k-c0x00ffffff-no-rj"
+            alt=""
+          />
+          <div class="bawah">
+            <div class="kiri">
+              <h2>noelao</h2>
+              <small>@elplongor</small>
             </div>
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://www.youtube.com/@elplongor"
+              class="kanan"
+            >
+              <span> subs </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="3"
+                stroke="white"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
-
-
-        <div class="pilihanOpsiKategori">
-            <div class="background"></div>
-            <div class="pilihanKategori2">
-                <div class="garis"></div>
-                <div class="choice">
-                    <h1>Base Trolls</h1>
-                    <h1>Clan War Leaguage</h1>
-                    <h1>War Base</h1>
-                    <h1>Center big Space</h1>
+      </div>
+      <div class="favorite">
+        <h2 style="padding: 0 2rem">Favorite ~</h2>
+        <div class="produk">
+            <a href="base.html" class="base">
+                <div class="title">
+                    <small>Base Link</small>
                 </div>
-            </div>
+                <div class="fotoLink">
+                    <img src="./public/image/iconLink/base.webp" alt="">
+                </div>
+            </a>
+            <a href="pasukan.html" class="pasukan">
+                <div class="title">
+                    <small>Troops Link</small>
+                </div>
+                <div class="fotoLink">
+                    <img src="./public/image/iconLink/base.webp" alt="">
+                </div>
+
+            </a>
         </div>
+      </div>
     </div>
 
+    <!-- css untuk footer -->
+    <style>
+      /* Footer Container */
+      .main-footer {
+        min-height: 50vh;
 
-<style>
-/* Footer Container */
-.main-footer {
-    min-height: 50vh;
+        width: 100%;
+        padding: 20px 0;
+        border-top: 1px solid #eeeeee; /* Garis tipis transparan */
+        background-color: transparent; /* Mengikuti background body */
+        font-family: inherit; /* Menggunakan font utama kamu */
+        margin-top: 1rem;
+      }
 
-    width: 100%;
-    padding: 20px 0;
-    border-top: 1px solid #eeeeee; /* Garis tipis transparan */
-    background-color: transparent; /* Mengikuti background body */
-    font-family: inherit; /* Menggunakan font utama kamu */
-    margin-top: 1rem;
+      .footer-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        color: #666; /* Warna teks abu-abu minimalis */
+        font-size: 0.9rem;
+      }
 
-}
+      /* Styling Efek Mengetik */
+      .highlight {
+        color: #333; /* Warna lebih gelap untuk teks yang diketik */
+        font-weight: 600;
+      }
 
-.footer-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    color: #666; /* Warna teks abu-abu minimalis */
-    font-size: 0.9rem;
-}
+      .cursor {
+        color: #007bff; /* Warna kursor (sesuaikan dengan tema kamu) */
+        font-weight: bold;
+        animation: blink 0.7s infinite;
+        background: #007bff;
+      }
 
-/* Styling Efek Mengetik */
-.highlight {
-    color: #333; /* Warna lebih gelap untuk teks yang diketik */
-    font-weight: 600;
-}
-
-.cursor {
-    color: #007bff; /* Warna kursor (sesuaikan dengan tema kamu) */
-    font-weight: bold;
-    animation: blink 0.7s infinite;
-    background: #007bff;
-}
-
-/* Responsif untuk HP */
-@media (max-width: 600px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-}
-</style>
+      /* Responsif untuk HP */
+      @media (max-width: 600px) {
+        .footer-content {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+        }
+      }
+    </style>
     <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-left">
-                <p>&copy; 2026 noelao. All rights reserved.</p>
-            </div>
-            
-            <div class="footer-right">
-                <p>Build with Love <span id="typing-text" class="highlight"></span><span class="cursor">💖</span></p>
-                <p>Design inspired by <a target="_blank" href="https://mobbin.com">mobbin</a></p>
-            </div>
+      <div class="footer-content">
+        <div class="footer-left">
+          <p>&copy; 2026 noelao. All rights reserved.</p>
         </div>
+
+        <div class="footer-right">
+          <p>
+            Build with Love <span id="typing-text" class="highlight"></span
+            ><span class="cursor">💖</span>
+          </p>
+          <p>
+            Design inspired by
+            <a target="_blank" href="https://mobbin.com">mobbin</a>
+          </p>
+        </div>
+      </div>
     </footer>
-
-<!-- mengetik -->
-<script src="./mengetik.js"></script>
-
-<script>
-    const pilihTh = document.querySelector('.memilihTH');
-    const pilihanOpsi = document.querySelector('.pilihanOpsi');
-
-    const memilihKategori = document.querySelector('.memilihKategori');
-    const pilihanOpsiKategori = document.querySelector('.pilihanOpsiKategori');
-
-    pilihTh.addEventListener("click", function(){
-        console.log("pencet");
-        pilihTh.classList.toggle('sedangMemilih');
-        pilihanOpsi.classList.toggle('actived');
-    });
-
-    memilihKategori.addEventListener("click", function(){
-        console.log("pencet");
-        memilihKategori.classList.toggle('sedangMemilih');
-        pilihanOpsiKategori.classList.toggle('pilihanOpsiKategoriMuncul');
-    });
-    pilihanOpsiKategori.querySelector(".background").addEventListener("click", function(){
-        memilihKategori.classList.toggle('sedangMemilih');
-        pilihanOpsiKategori.classList.toggle('pilihanOpsiKategoriMuncul');
-    });
-        
-
-
-</script>
-
-</body>
+  </body>
 </html>
