@@ -725,6 +725,17 @@ header {
             align-items: center;
             justify-content: center;
             gap: 1rem;
+            .tiga {
+                padding: 2rem 1rem;
+                width: calc(100% + 2rem);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                background-color: var(--silver);
+
+            }
             .card {
                 width: 100%;
                 height: 12rem;
@@ -756,6 +767,32 @@ header {
             .selingan {
                 height: 2rem;
             }
+            .quote {
+                height: max-content;
+                padding: 1rem;
+                text-align: center;
+            }
+            .nextData {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .panah {
+                    height: 4rem;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    background-color: var(--silver);
+                    border-radius: .75rem;
+                    cursor: pointer;
+
+                    svg {
+                        height: 2rem;
+                    }
+                }
+            }
         }
         @keyframes shimmer {
         0% {
@@ -767,37 +804,54 @@ header {
         }
     </style>
             <div class="wrapper">
-                <div class="card skeleton">
-                    <div class="card-content skeleton">
-                        <img src="./public/image/base/th17/base.webp" alt="">
+                <div class="tiga">
+                    <div class="card skeleton">
+                        <div class="card-content skeleton">
+                            <img src="./public/image/base/th17/base.webp" alt="">
+                        </div>
+                    </div>
+                    <a href="#" class="card">
+                        <div class="card-content">
+                            <img src="./public/image/base/th17/base.webp" alt="">
+                        </div>
+                    </a>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./public/image/base/th17/base.webp" alt="">
+                        </div>
                     </div>
                 </div>
-                <a href="#" class="card">
-                    <div class="card-content">
-                        <img src="./public/image/base/th17/base.webp" alt="">
-                    </div>
-                </a>
-                <div class="card">
-                    <div class="card-content">
-                        <img src="./public/image/base/th17/base.webp" alt="">
-                    </div>
+                <div class="selingan quote">
+                    <h2>" Musuhnya musuh adalah teman "</h2>
+                    <small>SUN TZU</small>
                 </div>
                 <div class="selingan card"></div>
-                <div class="selingan card"></div>
-                <div class="card">
 
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
+                
+                <div class="tiga">
+                    <div class="card skeleton">
+                        <div class="card-content skeleton">
+                            <img src="./public/image/base/th17/base.webp" alt="">
+                        </div>
+                    </div>
+                    <a href="#" class="card">
+                        <div class="card-content">
+                            <img src="./public/image/base/th17/base.webp" alt="">
+                        </div>
+                    </a>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./public/image/base/th17/base.webp" alt="">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="nextData">
-                    <div class="kiri"></div>
-                    <div class="tengah"></div>
-                    <div class="kanan"></div>
+                    <div class="panah">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--hitam)" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
