@@ -340,6 +340,7 @@
         display: flex;
         gap: 1rem;
         .menuan {
+            scroll-margin-top: 5rem;
             h2 {
                 font-size: 1.2rem;
                 font-weight: 700;
@@ -393,7 +394,7 @@
                     <div class="garis"></div>
                 </div>
                 <div class="bawah">
-                    <a href="#" class="logo">
+                    <a href="index.html" class="logo">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="24" height="24">
                             <path d="M 0 0 H 192 L 0 192 H 192 Z" fill="currentColor"/>
                         </svg>
@@ -417,10 +418,7 @@
     <div class="content">
 
         <div class="selamatDatang">
-            <div class="img">
-
-            </div>
-            <h1 style="width: 50%; line-height: 1;">Dear Warrior</h1>
+            <h1 style="width: 50%; line-height: 1; margin-bottom: .5rem;" class="muncul">Dear Warrior</h1>
             <div class="subTitle">
                 <div class="tips">
                     TIPS
@@ -448,11 +446,11 @@
 
 
         <div class="menu">
-            <a href="base.html" class="base menuan active">
+            <a href="base.html#base" class="base tombol menuan active" id="base">
                 <h2>Base</h2>
                 <div class="garisBawah"></div>
             </a>
-            <a href="pasukan.html" class="base menuan">
+            <a href="pasukan.html#pasukan" class="base tombol menuan" id="pasukan">
                 <h2>Pasukan</h2>
                 <div class="garisBawah"></div>
             </a>
@@ -527,18 +525,19 @@
         </div>
         <br>
         <div class="garis"></div>
+
         <div class="tampilkanHasil">
             <h2>Hasil base Untuk TH 18 :</h2>
             <div class="filter">
                 <div class="tengah">
                     <div class="terpilihBg"></div>
-                    <div class="pilihan terbaik terpilih">
+                    <div class="pilihan tombol terbaik terpilih">
                         <h2>terbaik</h2>
                     </div>
-                    <div class="pilihan terbaru">
+                    <div class="pilihan tombol terbaru">
                         <h2>terbaru</h2>
                     </div>
-                    <div class="pilihan terlama">
+                    <div class="pilihan tombol terlama">
                         <h2>terlama</h2>
                     </div>
                 </div>
@@ -644,6 +643,9 @@
                         height: 2rem;
                     }
                 }
+                .panah:active {
+                    scale: .9;
+                }
             }
         }
         @keyframes shimmer {
@@ -699,7 +701,7 @@
                 </div>
 
                 <div class="nextData">
-                    <div class="panah">
+                    <div class="panah tombol">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="var(--hitam)" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
                         </svg>
@@ -709,6 +711,7 @@
         </div>
 
 
+        <!-- menu kategori yg muncul dari bawah -->
         <div class="pilihanOpsiKategori">
             <div class="background"></div>
             <div class="pilihanKategori2">
@@ -721,6 +724,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 
